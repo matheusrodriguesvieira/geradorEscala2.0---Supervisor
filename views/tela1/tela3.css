@@ -155,8 +155,8 @@
     animation-delay: 0.5s;
 }
 
-.imageAndTextTela3Container{
-    justify-content: space-between;
+.imageAndTextContainer{
+    justify-content: start;
     gap: 5px;
     width: 70%;
     height: 100%;
