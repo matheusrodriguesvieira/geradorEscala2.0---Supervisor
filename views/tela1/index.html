@@ -4,37 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <!-- <link rel="stylesheet" href="tela2.css"> -->
-    <link rel="stylesheet" href="config.css">
-    <!-- <link rel="stylesheet" href="tela4.css"> -->
+    <link rel="stylesheet" href="tela1.css">
+    <link rel="stylesheet" href="tela2.css">
+    <link rel="stylesheet" href="tela3.css">
+    <link rel="stylesheet" href="tela4.css">
     <link rel="icon" href="../../assets/images/Hydro logo vertical/hydro_logo_vertical_black.ico" type="image/x-icon" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <title>Gerador de Escalas</title>
 
 </head>
-
-<div class="screen-loading-container mostrar">
-    <div class='loading-image-container'>
-        <img src="../../assets/images/hydro_logo_vertical_negative.png" alt="">
-    </div>
-    <div class="loading-progress">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-</div>
-
-<div class="component-loading-container">
-    <div class='loading-image-container'>
-        <img src="../../assets/images/hydro_logo_vertical_blue.png">
-    </div>
-    <div class=" loading-progress">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-</div>
 
 <body>
 
@@ -71,7 +48,7 @@
             <section class="tituloEConfiguracoes">
                 <h2 tituloEscalas></h2>
                 <a class="icon rotate" configuracao>
-                    <img class="" src="../../assets/images/settings.svg" alt="" srcset="">
+                    <img class="" src="../../assets/images/settings_FILL0_wght400_GRAD0_opsz24.png" alt="" srcset="">
                 </a>
             </section>
 
@@ -85,10 +62,10 @@
                             <div>13/09/2023</div>
                             <div class="controlesContainer">
                                 <a class="icon">
-                                    <img src="../../assets/images/delete.png" alt="" srcset="">
+                                    <img src="../../images/delete_FILL0_wght400_GRAD0_opsz24.png" alt="" srcset="">
                                 </a>
                                 <a class="icon">
-                                    <img src="../../assets/images/info.png" alt="" srcset="">
+                                    <img src="../../images/info_FILL0_wght400_GRAD0_opsz24.png" alt="" srcset="">
                                 </a>
                             </div>
                         </div>
@@ -109,39 +86,25 @@
     <!-- TELA 2 -->
     <!-- tela de configuracao -->
 
-    <aside class="bodyConfiguracoesContainer">
+    <aside class="bodyConfiguracoesContainer esconder">
         <div class="mainContainer">
-            <section class="headerContainer">
+            <section class="headerContainerTela3">
                 <div class="imageAndTextContainer">
                     <div class="imageContainer">
                         <img src="../../assets/images/hydro_logo_vertical_blue.png" alt="" srcset="">
                     </div>
                     <h1>Configurações de Disponibilidade</h1>
                 </div>
-                <!-- <button class="personalizadoBtnTela3" resetarBancoDados>Resetar Aplicação</button> -->
+                <button class="personalizadoBtnTela3" resetarBancoDados>Resetar Aplicação</button>
             </section>
 
             <section class="configuracoesEBotaoContainer">
                 <div class="configuracoesContainer">
 
-                    <div class="tituloELista">
+                    <div class="tituloELista col2">
                         <h2>Operadores</h2>
                         <div class="listaConfiguracoesContainer">
                             <ul listaOperadores>
-
-                                <!-- <li id="${index}">
-                                    <div class="liConfiguracaoContainer">
-                                        <div class="operadorEEquipamentoNome">Operador A</div>
-                                        <div class="operadorEEquipamentoStatus">Disponível</div>
-                                        <div class="controlesConfiguracaoContainer">
-
-                                            <div class="switchContainer">
-                                                <span class='toggleButton'></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li> -->
-
                                 <!-- <li>
                                     <div class="liConfiguracaoContainer">
                                         <div>Escala 1</div>
@@ -160,23 +123,10 @@
                         </div>
                     </div>
 
-                    <div class="tituloELista">
+                    <div class="tituloELista col2">
                         <h2>Equipamentos</h2>
                         <div class="listaConfiguracoesContainer">
                             <ul listaEquipamentos>
-
-                                <!-- <li id="${index}">
-                                    <div class="liConfiguracaoContainer">
-                                        <div class="operadorEEquipamentoNome">Equipamento 1</div>
-                                        <div class="operadorEEquipamentoStatus">Disponível</div>
-                                        <div class="controlesConfiguracaoContainer">
-
-                                            <div class="switchContainer">
-                                                <span class='toggleButton'></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li> -->
 
                                 <!-- <li>
                                     <div class="liConfiguracaoContainer">
@@ -201,8 +151,8 @@
 
 
 
-                <section class="personalizadoBtnContainer">
-                    <button class="personalizadoBtn coverBtn" Voltar>Voltar</button>
+                <section class="personalizadoBtnTela3Container">
+                    <button class="personalizadoBtnTela3 coverBtn" tela3Voltar>Voltar</button>
                 </section>
 
             </section>
@@ -211,7 +161,6 @@
     </aside>
 
 
-    <script src="./index.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="index.js"></script>
 
 </html>
