@@ -226,22 +226,6 @@ function atualizarTelaEscalas() {
                     }
                 }).showToast();
 
-                // let copiaListaEscalas = [];
-
-                // listaEscalaDaTurma.forEach((e) => {
-                //     if (e != elementoParaRemover) {
-                //         copiaListaEscalas.push(e);
-                //     }
-                // });
-                // listaEscalaDaTurma = copiaListaEscalas;
-
-                // // console.log(listaEscalaDaTurma);
-
-                // // listaEscalas.splice(listaEscalas[index], 1);
-
-
-                // salvarParametros();
-                // resetarParametros();
             });
 
             // PARTE RESPONSÁVEL POR DETALHES DA ESCALA
@@ -249,35 +233,6 @@ function atualizarTelaEscalas() {
                 let idLista = listaEscalaDaTurma[index].idlista;
                 sessionStorage.setItem('idLista', JSON.stringify(idLista));
                 mostrarTela2();
-                // console.log(idLista);
-
-                // if (index > 0) {
-                //     btnEditarEscala.forEach(btn => {
-                //         btn.hidden = true;
-                //     });
-                // }
-
-                // let escala = listaEscalaDaTurma[index].escala;
-                // let containerEscala = document.querySelector('.creditosEOperadoresForaEscala');
-                // let textoDeGeracao = `
-                // <div class="creditsEscalaContainer" detalhesCriacao>
-                //     <p>Generated in <strong>${listaEscalaDaTurma[index].dataCriacao} at ${listaEscalaDaTurma[index].horarioCriacao}</strong></p>
-                //     <p>GEMIN / GADEM</p>
-
-                // </div>
-                // `;
-
-                // mostrarTela2();
-
-                // btnGerarEscala.hidden = true;
-                // btnMostrarTela3.hidden = true;
-                // // btnSalvarEscala.hidden = true;
-
-                // renderizarEscala(escala, listaEscalaDaTurma[index].operadoresForaEscala);
-
-                // let range = document.createRange();
-                // containerEscala.appendChild(range.createContextualFragment(textoDeGeracao));
-
             });
 
 
