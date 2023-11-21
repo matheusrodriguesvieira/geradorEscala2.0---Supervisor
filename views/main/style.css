@@ -17,8 +17,6 @@ body{
 
 
 
-/* parte do todo */
-
 .mainContainer{
     display: flex;
     flex-direction: column;
@@ -100,7 +98,7 @@ body{
 }
 
 
-.listaContainer {
+.listaContainer{
     width: 100%;
     height: 92%;
     padding: 1% 2%;
@@ -123,7 +121,7 @@ body{
 
 }
 
-.controlesContainer{
+.controlesContainer, .controlesConfiguracaoContainer{
     display: flex;
     justify-content: space-between;
     gap: 5px;
@@ -143,6 +141,11 @@ body{
     border-radius: 10px;
     
 }
+
+
+
+
+
 
 .coverBtn{
     z-index: 0;
@@ -199,10 +202,7 @@ ul {
     transform: scale(1.2);
 }
 
-.edit{
-    height: 16px;
-    cursor: pointer;
-}
+
 
 .rotate img{
     transition: 0.5s;
@@ -212,20 +212,6 @@ ul {
     transform: rotateZ(360deg);
 }
 
-.white{
-    color: #fff;
-}
-
-
-.mostrar{
-    display: flex;
-}
-
-.esconder{
-    display: none;
-}
-
-
 .tituloEConfiguracoes{
     display: flex;
     align-items: center;
@@ -233,3 +219,85 @@ ul {
 }
 
 
+.screen-loading-container{
+    display: none;
+    background-color: #444D55;
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* transition: 3s ease 1s; */
+}
+
+.component-loading-container{
+    display: none;
+    background-color: rgba(189, 195, 199, 0.95);
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* transition: 3s ease 1s; */
+}
+
+.component-loading-container .loading-progress span {
+    background-color: #484c54;
+    opacity: 1;
+}
+
+.loading-progress{
+    /* background-color: #B95946; */
+    height: 20%;
+    width: 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.loading-progress span{
+    animation: dots 2s infinite ease-in-out;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: #fff;
+}
+
+.loading-progress span:nth-child(1){
+    animation-delay: 0.4s;
+}
+
+.loading-progress span:nth-child(2){
+    animation-delay: 0.8s;
+}
+
+.loading-progress span:nth-child(3){
+    animation-delay: 1.2s;
+}
+
+@keyframes dots {
+    50%{
+        transform: scale(1.5);
+    }
+}
+.loading-image-container{
+    /* background-color: aqua; */
+    width: auto;
+    height: 50%;
+
+}
+
+.loading-image-container img{
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
