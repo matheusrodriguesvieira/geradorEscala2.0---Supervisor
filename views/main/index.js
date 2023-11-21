@@ -39,15 +39,6 @@ let select = document.querySelector('[name = selectTurmas]');
 var ulListaEscalas = document.querySelector('.listaContainer > ul');
 
 
-
-
-// var btnTela4Voltar = document.querySelector('[tela4Voltar]');
-// var btnResetarBancoDados = document.querySelector('[resetarBancoDados]');
-// var btnGerarEscala = document.querySelector('[gerarEscala]');
-// var btnSalvarEscala = document.querySelector('[salvar]');
-// var btnEditarEscala = document.querySelectorAll('.edit');
-// var btnSalvarEdicao = document.querySelector('[salvarEdicao]');
-
 // ---------------------------------------------------------------------------------------
 
 // FUNÇÕES DO BANCO DE DADOS
