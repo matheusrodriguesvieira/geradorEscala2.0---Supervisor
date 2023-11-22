@@ -12,19 +12,19 @@
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-.mostrar{
+.mostrar {
     display: flex;
 
 }
 
-.configuracoesContainer{
+.configuracoesContainer {
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 95%;
 }
 
-.configuracoesEBotaoContainer{
+.configuracoesEBotaoContainer {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -32,30 +32,30 @@
     height: 90%;
 }
 
-.tituloELista{
+.tituloELista {
     width: 49%;
     height: 100%;
 }
 
-.tituloELista:nth-of-type(2){
+.tituloELista:nth-of-type(2) {
     margin-left: 1%;
 }
 
-.listaConfiguracoesContainer{
+.listaConfiguracoesContainer {
     width: 100%;
     height: 92%;
     /* padding: 1% 2%; */
     overflow-y: scroll;
-    background-color: rgba(236, 240, 241,0.6);
+    background-color: rgba(236, 240, 241, 0.6);
     border: 1px solid #bdc3c7;
     border-radius: 15px;
 }
 
-.listaConfiguracoesContainer::-webkit-scrollbar{
+.listaConfiguracoesContainer::-webkit-scrollbar {
     display: none;
 }
 
-.liConfiguracaoContainer{
+.liConfiguracaoContainer {
     display: flex;
     width: 100%;
     padding: 1% 2%;
@@ -64,13 +64,13 @@
     border-bottom: 1px solid #bdc3c7;
 }
 
-.operadorEEquipamentoNome{
+.operadorEEquipamentoNome {
     width: 55%;
     text-transform: uppercase;
     /* background-color: red; */
 }
 
-.operadorEEquipamentoStatus{
+.operadorEEquipamentoStatus {
     width: 25%;
 }
 
@@ -81,7 +81,8 @@
     gap: 5px;
 } */
 
-.operadorEEquipamentoNome, .operadorEEquipamentoStatus{
+.operadorEEquipamentoNome,
+.operadorEEquipamentoStatus {
     font-size: 12px;
     letter-spacing: 1px;
 }
@@ -94,11 +95,11 @@
 } */
 
 
-.switchContainer{
+.switchContainer {
     width: 50px;
     height: 25px;
     display: flex;
-    background-color: rgba(192, 57, 43,1.0);
+    background-color: rgba(192, 57, 43, 1.0);
     /* border: 2px solid rgba(192, 57, 43,1.0); */
     border-radius: 20px;
     align-items: center;
@@ -108,7 +109,7 @@
     /* justify-content: center; */
 }
 
-.toggleButton{
+.toggleButton {
     width: 20px;
     height: 20px;
     background-color: #fff;
@@ -116,17 +117,82 @@
     transition: 0.3s;
 
 }
-.switchContainer.active{
+
+.switchContainer.active {
     background-color: #3E7670;
     /* justify-content: end; */
-    
+
 }
 
-.liConfiguracaoContainer:has(.controlesConfiguracaoContainer > :not(.switchContainer.active)){
-    background-color: rgba(231, 76, 60,0.8);
+.liConfiguracaoContainer:has(.controlesConfiguracaoContainer > :not(.switchContainer.active)) {
+    background-color: rgba(231, 76, 60, 0.8);
     color: #fff;
 }
 
-.switchContainer.active .toggleButton{
+.switchContainer.active .toggleButton {
     transform: translateX(130%);
+}
+
+
+@media screen and (min-width: 320px) and (max-width: 720px) {
+    .icon {
+        height: 90%;
+    }
+
+    .configuracoesEBotaoContainer {
+        justify-content: start;
+        gap: 1%;
+    }
+
+    .tituloELista h2 {
+        font-size: 15px;
+        /* text-transform: uppercase; */
+        margin-bottom: 2px;
+        /* background-color: red; */
+    }
+
+    .configuracoesContainer {
+        flex-direction: column;
+        height: 92%;
+        gap: 2%;
+        /* background-color: aqua; */
+    }
+
+    .liConfiguracaoContainer {
+        padding: 0% 2%;
+    }
+
+    .operadorEEquipamentoNome,
+    .operadorEEquipamentoStatus {
+        font-size: 11px;
+        /* background-color: aua; */
+    }
+
+    .tituloELista {
+        /* overflow-y: scroll; */
+        height: 49%;
+        width: 100%;
+        /* background-color: #3E7670; */
+        /* height: 100%; */
+    }
+
+
+
+    .personalizadoBtnContainer {
+        width: 100%;
+        height: 4%;
+        padding: 0 3%;
+        /* background-color: ; */
+        text-align: center;
+    }
+
+    .switchContainer {
+        width: 40px;
+        height: 20px;
+    }
+
+    .toggleButton {
+        width: 16px;
+        height: 16px;
+    }
 }

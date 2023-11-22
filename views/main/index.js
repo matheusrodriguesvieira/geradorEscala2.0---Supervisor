@@ -166,7 +166,7 @@ function atualizarTelaEscalas() {
             ulListaEscalas.innerHTML += `
             <li id="${escala.idlista}">
                 <div class="liContainer">
-                    <div>${escala.nomelista}</div>
+                    <div id="nome-lista-${index}">${escala.nomelista}</div>
                     <div>${escala.datacriacao} ${escala.horariocriacao}</div>
                     <div class="controlesContainer">
                         <a class="icon" deletarEscala${index}>
@@ -185,6 +185,7 @@ function atualizarTelaEscalas() {
         lis.forEach((li, index) => {
             let btnDeletarEscala = document.querySelector(`[deletarEscala${index}]`);
             let btnInfoEscala = document.querySelector(`[infoEscala${index}]`);
+            let nomeLista = document.querySelector(`#nome-lista-${index}`);
 
             // PARTE RESPONSÁVEL POR DELETAR A ESCALA
             btnDeletarEscala.addEventListener('click', async (e) => {
@@ -235,6 +236,11 @@ function atualizarTelaEscalas() {
                 mostrarTela2();
             });
 
+            nomeLista.addEventListener('click', () => {
+                let idLista = listaEscalaDaTurma[index].idlista;
+                sessionStorage.setItem('idLista', JSON.stringify(idLista));
+                mostrarTela2();
+            });
 
         });
     }
