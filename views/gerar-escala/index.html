@@ -37,11 +37,6 @@
 
 <body>
     <main class="mainContainer">
-        <!-- <div class="headerEscalaContainer">
-            <a class="icon voltar">
-                <img src="./images/undo_FILL0_wght400_GRAD0_opsz24.png" alt="" voltar>
-            </a>
-        </div> -->
         <section class="escalaContainer">
             <table class="styled-table">
                 <thead>
@@ -134,22 +129,8 @@
                 </div>
             </div>
         </section>
-        <section class="personalizadoBtnContainer">
-            <button class="personalizadoBtn" voltar>Voltar</button>
-            <!-- <div class="containerColunas col2"> -->
-            <!-- <button class="personalizadoBtn" salvar disabled>Salvar</button> -->
-            <!-- <button class="personalizadoBtn" configuracao>Configurar</button> -->
-            <!-- </div> -->
-            <button class="personalizadoBtn" gerarEscala>Gerar nova escala</button>
-        </section>
-    </main>
-
-
-    <!-- TELA 4: EDITAR ESCALA -->
-    <aside class="bodyEditarEscalaContainer">
         <div class="mainEditarEscalaContainer">
             <section class="inputContainer">
-                <!-- <input type="text" maxlength="50" placeholder="Insira o valor para substituir" inputMudanca> -->
                 <input type="text" list="" placeholder="Insira o valor para substituir" inputMudanca>
 
                 <datalist id="transporte">
@@ -188,7 +169,6 @@
                     <option value="MINA 6QR">
                 </datalist>
 
-                <!-- MODIFICADO VIA JAVASCRIPT -->
                 <datalist id="operadoresDiponiveis">
                 </datalist>
 
@@ -209,7 +189,82 @@
                 <button class="personalizadoBtn" salvarEdicao>Salvar</button>
             </section>
         </div>
-    </aside>
+        <!-- <aside class="bodyEditarEscalaContainer">
+        </aside> -->
+        <section class="personalizadoBtnContainer">
+            <button class="personalizadoBtn" voltar>Voltar</button>
+
+            <button class="personalizadoBtn" gerarEscala>Gerar nova escala</button>
+        </section>
+
+
+
+    </main>
+
+
+    <!-- TELA 4: EDITAR ESCALA -->
+    <!-- <aside class="bodyEditarEscalaContainer">
+        <div class="mainEditarEscalaContainer">
+            <section class="inputContainer">
+                <input type="text" list="" placeholder="Insira o valor para substituir" inputMudanca>
+
+                <datalist id="transporte">
+                    <option value="MICRO">
+                    <option value="GADEM001">
+                    <option value="GADEM002">
+                    <option value="GADEM003">
+                    <option value="GADEM004">
+                    <option value="GADEM005">
+                    <option value="GADEM006">
+                </datalist>
+
+                <datalist id="local">
+                    <option value="MINA 4AB">
+                    <option value="MINA 4CD">
+                    <option value="MINA 4EF">
+                    <option value="MINA 4GH">
+                    <option value="MINA 4IJ">
+                    <option value="MINA 4KL">
+                    <option value="MINA 4MN">
+                    <option value="MINA 4OP">
+                    <option value="MINA 4Z">
+                    <option value="MINA 4X">
+                    <option value="MINA 4W">
+                    <option value="MINA 4UV">
+                    <option value="MINA 7A">
+                    <option value="MINA 7BC">
+                    <option value="MINA 7DE">
+                    <option value="MINA 6AB">
+                    <option value="MINA 6CD">
+                    <option value="MINA 6EF">
+                    <option value="MINA 6GH">
+                    <option value="MINA 6IJ">
+                    <option value="MINA 6KL">
+                    <option value="MINA 6MN">
+                    <option value="MINA 6QR">
+                </datalist>
+
+                <datalist id="operadoresDiponiveis">
+                </datalist>
+
+                <datalist id="atividadesPrincipais">
+                    <option value="PRÉ-CORTE">
+                    <option value="DECAP DIRETO">
+                    <option value="ESCARIFICAÇÃO">
+                    <option value="RASPAGEM DE LF">
+                    <option value="EXPOSIÇÃO">
+                    <option value="CARREGANDO">
+                    <option value="TRANSPORTANDO ESTÉRIL">
+                    <option value="PRODUZINDO ESTÉRIL">
+                </datalist>
+            </section>
+
+            <section class="personalizadoBtnContainerTela4 col2">
+                <button class="personalizadoBtn" cancelar>Cancelar</button>
+                <button class="personalizadoBtn" salvarEdicao>Salvar</button>
+            </section>
+        </div>
+    </aside> -->
 
 </body>
 <script src="index.js"></script>

@@ -35,18 +35,7 @@ var btnCancelarEdicao = document.querySelector('[cancelar]');
 var btnSalvarEdicao = document.querySelector('[salvarEdicao]');
 var btnEditarEscala = document.querySelectorAll('.edit');
 
-var telaEdicao = document.querySelector('.bodyEditarEscalaContainer');
-
-// let select = document.querySelector('[name = selectTurmas]');
-
-
-// var ulListaEscalas = document.querySelector('.listaContainer > ul');
-
-
-
-
-// var btnResetarBancoDados = document.querySelector('[resetarBancoDados]');
-// var btnSalvarEscala = document.querySelector('[salvar]');
+var telaEdicao = document.querySelector('.mainEditarEscalaContainer');
 
 // ---------------------------------------------------------------------------------------
 
@@ -732,14 +721,16 @@ function mostrarTela1() {
     // btnMostrarTela3.hidden = false;
 }
 
+
 async function mostrarTelaEdicao(col) {
 
     telaEdicao.classList.toggle('mostrar');
+    let containerBtns = document.querySelector(`.personalizadoBtnContainer`);
+    console.log(containerBtns);
+    containerBtns.classList.toggle('esconder');
 
     if (telaEdicao.classList.contains('mostrar')) {
         let input = document.querySelector(`[inputMudanca]`);
-
-        // console.log(col);
 
         if (col.getAttribute('col2') != null) {
             let operadores;

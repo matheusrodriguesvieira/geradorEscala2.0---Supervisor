@@ -1,33 +1,48 @@
 .bodyEditarEscalaContainer {
     display: none;
-    position: fixed;
+    /* position: fixed; */
     justify-content: center;
     align-items: center;
-    top: 92vh;
+    /* top: 92vh;
     bottom: 0vh;
     left: 10vw;
-    right: 10vw;
-    width: 80vw;
-    height: 7vh;
+    right: 10vw; */
+    width: 100%;
+    height: 5%;
+    padding: 0% 1%;
+
     transition: 0.5s;
     /* background-color: rgba(0, 0, 0, 0.1); */
-    /* background-color: blueviolet; */
+    background-color: blueviolet;
 }
 
 .mainEditarEscalaContainer {
-    display: flex;
-    flex-direction: row;
+
+    width: 100%;
+    height: 7%;
+    display: none;
+    align-items: center;
+    padding: 0% 1%;
+    transition: 0.5s;
+    /* background-color: red; */
     background-color: rgb(140, 140, 140);
-    /* padding-top: 10px; */
+    /* margin-bottom: 0.3%; */
+    /* background-color: #009879; */
+    /* justify-content: space-between; */
+    /* text-align: center; */
+
+    /* display: flex;
+    flex-direction: row;
     width: 100%;
     height: 95%;
     align-items: center;
+    border-radius: 25px; */
+    /* padding-top: 10px; */
     /* background-color: #fff; */
     /* overflow: hidden; */
 
 
     /* padding: 1% 1%; */
-    border-radius: 25px;
 }
 
 .personalizadoBtnContainerTela4 {
@@ -52,7 +67,7 @@
 
 
 .inputContainer {
-    margin: 3% 2%;
+    /* margin: 3% 2%; */
     width: 60%;
     height: 80%;
 }

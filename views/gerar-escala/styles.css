@@ -87,6 +87,10 @@ body {
     background-color: #B95946;
 }
 
+.esconder {
+    display: none;
+}
+
 .personalizadoBtn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
