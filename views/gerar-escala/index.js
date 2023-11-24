@@ -726,7 +726,7 @@ async function mostrarTelaEdicao(col) {
 
     telaEdicao.classList.toggle('mostrar');
     let containerBtns = document.querySelector(`.personalizadoBtnContainer`);
-    console.log(containerBtns);
+    // console.log(containerBtns);
     containerBtns.classList.toggle('esconder');
 
     if (telaEdicao.classList.contains('mostrar')) {
@@ -747,7 +747,8 @@ async function mostrarTelaEdicao(col) {
                 return a.nome < b.nome ? -1 : a.nome > b.nome ? 1 : 0;
             })
 
-            let selectOperadoresDisponiveis = document.getElementById("operadoresDiponiveis");
+            let selectOperadoresDisponiveis = document.querySelector("#operadoresDiponiveis > select");
+            console.log(selectOperadoresDisponiveis);
             // let optionIndisponivel = `<option value="indisponível">`;
             // let optionManutencao = `<option value="manutenção">`;
             // let optionInfraestrutura = `<option value="infraestrutura">`;
