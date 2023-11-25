@@ -730,8 +730,6 @@ async function mostrarTelaEdicao(col) {
     containerBtns.classList.toggle('esconder');
 
     if (telaEdicao.classList.contains('mostrar')) {
-        let input = document.querySelector(`[inputMudanca]`);
-
         if (col.getAttribute('col2') != null) {
             let operadores;
 
@@ -747,34 +745,172 @@ async function mostrarTelaEdicao(col) {
                 return a.nome < b.nome ? -1 : a.nome > b.nome ? 1 : 0;
             })
 
-            let selectOperadoresDisponiveis = document.getElementById("operadoresDiponiveis");
-            // let optionIndisponivel = `<option value="indisponível">`;
-            // let optionManutencao = `<option value="manutenção">`;
-            // let optionInfraestrutura = `<option value="infraestrutura">`;
-            // let optionFaltaOperador = `<option value="falta de operador">`;
 
-            selectOperadoresDisponiveis.innerHTML = "";
-            // selectOperadoresDisponiveis.innerHTML += optionFaltaOperador;
-            // selectOperadoresDisponiveis.innerHTML += optionIndisponivel;
-            // selectOperadoresDisponiveis.innerHTML += optionInfraestrutura;
-            // selectOperadoresDisponiveis.innerHTML += optionManutencao;
+            let select = document.querySelector("#select-field");
+            let checkPersonalizadoContainer = document.querySelector('.checkbox-container');
+            let inputPersonalizado = document.querySelector('[inputMudanca]');
 
+            inputPersonalizado.hidden = true;
+            select.hidden = false;
 
+            select.innerHTML = '';
+            checkPersonalizadoContainer.innerHTML = '';
+
+            let defaultOption = `<option value="" checked>Selecione uma opção</option>`;
+            select.innerHTML += defaultOption;
             operadores.forEach(operador => {
-                let option = `<option value="${operador.matricula} - ${operador.nome.toUpperCase()}${operador.turma == "" ? "" : " - Turma " + operador.turma.toUpperCase()}">`;
-                selectOperadoresDisponiveis.innerHTML += option;
+                let option = `<option value="${operador.matricula}">${operador.nome.toUpperCase()}${operador.turma == "" ? "" : " - Turma " + operador.turma.toUpperCase()}</option>`;
+                select.innerHTML += option;
             });
 
-            input.setAttribute('list', 'operadoresDiponiveis');
+
         }
         if (col.getAttribute('col3') != null) {
-            input.setAttribute('list', 'local');
+
+
+
+            let select = document.querySelector("#select-field");
+            select.innerHTML = '';
+
+
+            let defaultOption = `<option value="" checked>Selecione uma opção</option>`;
+            select.innerHTML += defaultOption;
+
+            let options = `
+            <option value="MINA 4AB">MINA 4AB</option>
+            <option value="MINA 4CD">MINA 4CD</option>
+            <option value="MINA 4EF">MINA 4EF</option>
+            <option value="MINA 4GH">MINA 4GH</option>
+            <option value="MINA 4IJ">MINA 4IJ</option>
+            <option value="MINA 4KL">MINA 4KL</option>
+            <option value="MINA 4MN">MINA 4MN</option>
+            <option value="MINA 4OP">MINA 4OP</option>
+            <option value="MINA 4Z">MINA 4Z</option>
+            <option value="MINA 4X">MINA 4X</option>
+            <option value="MINA 4W">MINA 4W</option>
+            <option value="MINA 4UV">MINA 4UV</option>
+            <option value="MINA 7A">MINA 7A</option>
+            <option value="MINA 7BC">MINA 7BC</option>
+            <option value="MINA 7DE">MINA 7DE</option>
+            <option value="MINA 6AB">MINA 6AB</option>
+            <option value="MINA 6CD">MINA 6CD</option>
+            <option value="MINA 6EF">MINA 6EF</option>
+            <option value="MINA 6GH">MINA 6GH</option>
+            <option value="MINA 6IJ">MINA 6IJ</option>
+            <option value="MINA 6KL">MINA 6KL</option>
+            <option value="MINA 6MN">MINA 6MN</option>
+            <option value="MINA 6QR">MINA 6QR</option>
+            `;
+            select.innerHTML += options;
+
+            let checkPersonalizadoContainer = document.querySelector('.checkbox-container');
+            let inputPersonalizado = document.querySelector('[inputMudanca]');
+
+
+            checkPersonalizadoContainer.innerHTML = "";
+            checkPersonalizadoContainer.innerHTML += `
+            <label for="check-personalizado">Personalizado</label>
+            <input type="checkbox" id="check-personalizado" ${inputPersonalizado.hidden ? "" : "checked"}>
+            `;
+
+
+            let checkPersonalizado = document.querySelector('#check-personalizado');
+
+            checkPersonalizado.addEventListener('change', () => {
+                if (checkPersonalizado.checked) {
+                    select.hidden = true;
+                    inputPersonalizado.hidden = false;
+                } else {
+                    select.hidden = false;
+                    inputPersonalizado.hidden = true;
+                }
+            });
+
+
+
+
         }
         if (col.getAttribute('col4') != null) {
-            input.setAttribute('list', 'transporte');
+            let select = document.querySelector("#select-field");
+            select.innerHTML = '';
+
+            let defaultOption = `<option value="" checked>Selecione uma opção</option>`;
+            select.innerHTML += defaultOption;
+            let options = `
+                    <option value="GADEM001">GADEM001</option>
+                    <option value="GADEM002">GADEM002</option>
+                    <option value="GADEM003">GADEM003</option>
+                    <option value="GADEM004">GADEM004</option>
+                    <option value="GADEM005">GADEM005</option>
+                    <option value="GADEM006">GADEM006</option>
+            `;
+            select.innerHTML += options;
+
+
+            let checkPersonalizadoContainer = document.querySelector('.checkbox-container');
+            checkPersonalizadoContainer.innerHTML = "";
+            let inputPersonalizado = document.querySelector('[inputMudanca]');
+
+            checkPersonalizadoContainer.innerHTML += `
+                    <label for="check-personalizado">Personalizado</label>
+                    <input type="checkbox" id="check-personalizado" ${inputPersonalizado.hidden ? "" : "checked"}>
+            `;
+
+
+            let checkPersonalizado = document.querySelector('#check-personalizado');
+
+            checkPersonalizado.addEventListener('change', () => {
+                if (checkPersonalizado.checked) {
+                    select.hidden = true;
+                    inputPersonalizado.hidden = false;
+                } else {
+                    select.hidden = false;
+                    inputPersonalizado.hidden = true;
+                }
+            });
+
         }
         if (col.getAttribute('col5') != null) {
-            input.setAttribute('list', 'atividadesPrincipais');
+            let select = document.querySelector("#select-field");
+            select.innerHTML = '';
+
+            let defaultOption = `<option value="" checked>Selecione uma opção</option>`;
+            select.innerHTML += defaultOption;
+            let options = `
+                    <option value="PRÉ-CORTE">PRÉ-CORTE</option>
+                    <option value="DECAP DIRETO">DECAP DIRETO</option>
+                    <option value="ESCARIFICAÇÃO">ESCARIFICAÇÃO</option>
+                    <option value="RASPAGEM DE LF">RASPAGEM DE LF</option>
+                    <option value="EXPOSIÇÃO">EXPOSIÇÃO</option>
+                    <option value="CARREGANDO">CARREGANDO</option>
+                    <option value="TRANSPORTANDO ESTÉRIL">TRANSPORTANDO ESTÉRIL</option>
+                    <option value="PRODUZINDO ESTÉRIL">PRODUZINDO ESTÉRIL</option>
+            `;
+            select.innerHTML += options;
+
+
+
+            let checkPersonalizadoContainer = document.querySelector('.checkbox-container');
+            checkPersonalizadoContainer.innerHTML = "";
+            let inputPersonalizado = document.querySelector('[inputMudanca]');
+
+            checkPersonalizadoContainer.innerHTML += `
+                    <label for="check-personalizado">Personalizado</label>
+                    <input type="checkbox" id="check-personalizado" ${inputPersonalizado.hidden ? "" : "checked"}>
+            `;
+
+
+            let checkPersonalizado = document.querySelector('#check-personalizado');
+
+            checkPersonalizado.addEventListener('change', () => {
+                if (checkPersonalizado.checked) {
+                    select.hidden = true;
+                    inputPersonalizado.hidden = false;
+                } else {
+                    select.hidden = false;
+                    inputPersonalizado.hidden = true;
+                }
+            });
         }
 
     }
@@ -830,40 +966,36 @@ function atribuirEventos() {
         btnEditar.addEventListener('click', (e) => {
 
             let tds = document.querySelectorAll(`td[col${index + 2}]`);
-            console.log('clicando');
+            // console.log('clicando');
 
             // verifica de tem escala gerada
             if (tds.length != 0) {
 
                 // verifica se nao tem checkbox em tela
-                if (document.querySelectorAll('[type = checkbox]').length == 0) {
-                    console.log('adicionando check');
+                if (document.querySelectorAll('.check-edicao').length == 0) {
+                    // console.log('adicionando check');
                     mostrarTelaEdicao(e.target);
 
                     btnMostrarTela1.disabled = true;
                     btnGerarEscala.disabled = true;
-                    // btnSalvarEscala.disabled = true;
-                    // btnMostrarTela3[1].disabled = true;
 
                     tds.forEach((td, jindex) => {
-                        let input = `<input type="checkbox" id="col${index + 2}${jindex}" col${index + 2}>`;
+                        let input = `<input class="check-edicao" type="checkbox" id="col${index + 2}${jindex}" col${index + 2}>`;
                         td.innerHTML = input + td.innerHTML;
                     });
 
                 } else {
-                    let checkboxes = document.querySelectorAll('[type = checkbox]');
+                    let checkboxes = document.querySelectorAll('.check-edicao');
                     checkboxes.forEach(check => {
                         check.parentElement.innerHTML = '' + check.parentElement.innerText;
                     })
 
                     mostrarTelaEdicao(e.target);
 
-                    let input = document.querySelector(`[inputMudanca]`);
-                    input.value = '';
+                    // let input = document.querySelector(`[inputMudanca]`);
+                    // input.value = '';
                     btnMostrarTela1.disabled = false;
                     btnGerarEscala.disabled = false;
-                    // btnSalvarEscala.disabled = false;
-                    // btnMostrarTela3[1].disabled = false;
 
                 }
             }
@@ -872,19 +1004,13 @@ function atribuirEventos() {
 
 
     btnCancelarEdicao.addEventListener('click', () => {
-        let checkboxes = document.querySelectorAll('[type = checkbox]');
+        let checkboxes = document.querySelectorAll('.check-edicao');
         let input = document.querySelector(`[inputMudanca]`);
 
         input.value = '';
         mostrarTelaEdicao();
 
         btnMostrarTela1.disabled = false;
-        // btnGerarEscala.disabled = false;
-        // btnSalvarEscala.disabled = false;
-        // btnMostrarTela3[1].disabled = false;
-
-
-
 
         checkboxes.forEach((check, index) => {
             check.parentElement.innerHTML = '' + check.parentElement.innerText;
@@ -894,10 +1020,17 @@ function atribuirEventos() {
     btnSalvarEdicao.addEventListener('click', async () => {
         // alert('salvou');
         let tds = document.querySelectorAll(`td[col1]`);
-        let checkboxes = document.querySelectorAll('[type = checkbox]');
-        let input = document.querySelector(`[inputMudanca]`);
+        let checkboxes = document.querySelectorAll('.check-edicao');
+        let input;
 
-        // console.log(listaEscalas);
+
+        if (document.querySelector('#check-personalizado').checked) {
+            input = document.querySelector(`[inputMudanca]`);
+        } else {
+            input = document.querySelector('#select-field');
+        }
+
+        // console.log(input.value);
 
 
 
@@ -917,29 +1050,12 @@ function atribuirEventos() {
                         let index = listaEscalas.escala.findIndex((element) => element.tag == tds[indice].innerText);
                         let escala = { ...listaEscalas.escala[index] };
 
-                        let matricula = input.value.split('-')
-                        matricula = matricula[0].trim();
+                        let matricula = input.value;
+                        // matricula = matricula[0].trim();
                         escala.matricula = parseInt(matricula);
 
                         atualizacoesLista.escala.push(escala);
-                        // console.log(atualizacoesLista);
-                        // console.log(typeof matricula);
 
-
-                        // VERIFICA SE ESTÁ SENDO INSERIDO UM OPERADOR EM MULTIPLAS LINHAS
-                        // let index = listaEscalaDaTurma[0].escala.findIndex((element) => element.operador == check.parentElement.innerText && element.equipamento == tds[indice].innerText);
-
-                        // if (listaEscalaDaTurma[0].operadoresForaEscala.findIndex(operador => operador.nome == input.value) != -1) {
-                        //     let indexOperadorForaEscala = listaEscalaDaTurma[0].operadoresForaEscala.findIndex(operador => operador.nome == input.value)
-                        //     listaEscalaDaTurma[0].operadoresForaEscala.splice(indexOperadorForaEscala, 1);
-                        // }
-
-                        // if ((!existeCodigoEspecial(check.parentElement.innerText)) && (operadoresDaTurma.findIndex(operador => operador.nome == check.parentElement.innerText.toLowerCase()) != -1)) {
-                        //     let indexOperadorDaTurma = operadoresDaTurma.findIndex(operador => operador.nome == check.parentElement.innerText.toLowerCase())
-                        //     listaEscalaDaTurma[0].operadoresForaEscala.push(operadoresDaTurma[indexOperadorDaTurma]);
-                        // }
-
-                        // listaEscalaDaTurma[0].escala[index].operador = input.value.toUpperCase();
 
                     } else if (check.getAttribute('col3') != null) {
                         // console.log(listaEscalas);
@@ -948,17 +1064,7 @@ function atribuirEventos() {
                         escala.localizacao = input.value.toLowerCase();
 
                         atualizacoesLista.escala.push(escala);
-                        // console.log(atualizacoesLista);
 
-                        // console.log(listaEscalas.escala[index]);
-                        // console.log(atualizacoesLista.escala);
-
-                        // listaEscalas.escala[index].localizacao = input.value;
-                        // console.log(input.value.toUpperCase());
-                        // console.log(index);
-
-                        // index = equipamentos.findIndex(equipamento => equipamento.tag.toUpperCase() == listaEscalas.escala[index].equipamento);
-                        // equipamentos[index].local = input.value;
                     } else if (check.getAttribute('col4') != null) {
                         let index = listaEscalas.escala.findIndex((element) => element.tag == tds[indice].innerText);
 
@@ -975,11 +1081,11 @@ function atribuirEventos() {
                         escala.atividade = input.value.toLowerCase();
 
                         atualizacoesLista.escala.push(escala);
-                        // console.log(atualizacoesLista.escala.push(escala));
-                        // listaEscalas.escala[index].atividade = input.value;
                     }
                 }
             };
+
+            // console.log(atualizacoesLista);
 
             let loading = document.querySelector('.component-loading-container');
 
@@ -1034,7 +1140,6 @@ function atribuirEventos() {
 
         renderizarEscala(listaEscalas.escala, listaEscalas.operadoresForaEscala);
     });
-
 
 }
 
