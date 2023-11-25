@@ -747,8 +747,7 @@ async function mostrarTelaEdicao(col) {
                 return a.nome < b.nome ? -1 : a.nome > b.nome ? 1 : 0;
             })
 
-            let selectOperadoresDisponiveis = document.querySelector("#operadoresDiponiveis > select");
-            console.log(selectOperadoresDisponiveis);
+            let selectOperadoresDisponiveis = document.getElementById("operadoresDiponiveis");
             // let optionIndisponivel = `<option value="indisponível">`;
             // let optionManutencao = `<option value="manutenção">`;
             // let optionInfraestrutura = `<option value="infraestrutura">`;
