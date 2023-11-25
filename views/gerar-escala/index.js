@@ -809,7 +809,7 @@ async function mostrarTelaEdicao(col) {
 
             checkPersonalizadoContainer.innerHTML = "";
             checkPersonalizadoContainer.innerHTML += `
-            <label for="check-personalizado">Personalizado</label>
+            <label for="check-personalizado">Outro</label>
             <input type="checkbox" id="check-personalizado" ${inputPersonalizado.hidden ? "" : "checked"}>
             `;
 
@@ -852,7 +852,7 @@ async function mostrarTelaEdicao(col) {
             let inputPersonalizado = document.querySelector('[inputMudanca]');
 
             checkPersonalizadoContainer.innerHTML += `
-                    <label for="check-personalizado">Personalizado</label>
+                    <label for="check-personalizado">Outro</label>
                     <input type="checkbox" id="check-personalizado" ${inputPersonalizado.hidden ? "" : "checked"}>
             `;
 
@@ -895,7 +895,7 @@ async function mostrarTelaEdicao(col) {
             let inputPersonalizado = document.querySelector('[inputMudanca]');
 
             checkPersonalizadoContainer.innerHTML += `
-                    <label for="check-personalizado">Personalizado</label>
+                    <label for="check-personalizado">Outro</label>
                     <input type="checkbox" id="check-personalizado" ${inputPersonalizado.hidden ? "" : "checked"}>
             `;
 
@@ -1024,11 +1024,16 @@ function atribuirEventos() {
         let input;
 
 
-        if (document.querySelector('#check-personalizado').checked) {
-            input = document.querySelector(`[inputMudanca]`);
+        if (document.querySelector('#check-personalizado') != null) {
+            if (document.querySelector('#check-personalizado').checked) {
+                input = document.querySelector(`[inputMudanca]`);
+            } else {
+                input = document.querySelector('#select-field');
+            }
         } else {
             input = document.querySelector('#select-field');
         }
+
 
         // console.log(input.value);
 
