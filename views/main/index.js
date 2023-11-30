@@ -118,7 +118,7 @@ async function fetchData() {
 
 
 async function resetarParametros() {
-    console.log("fetchData");
+    // console.log("fetchData");
 
     await fetchData();
     // console.log("equipamentosDisponiveis");
