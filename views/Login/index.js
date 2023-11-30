@@ -21,7 +21,7 @@ function init() {
                 }
             }).showToast();
         }
-    })f
+    })
 }
 
 function isValidInput() {
