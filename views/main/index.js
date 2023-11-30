@@ -118,14 +118,23 @@ async function fetchData() {
 
 
 async function resetarParametros() {
+    console.log("fetchData");
 
     await fetchData();
+    // console.log("equipamentosDisponiveis");
+
 
     equipamentosDisponiveis = equipamentos.filter((equipamento) => equipamento.disponivel == true);
     equipamentosIndisponiveis = equipamentos.filter((equipamento) => equipamento.disponivel == false);
     operadoresDisponiveis = operadoresDaTurma.filter((operador) => operador.disponivel == true);
     escala = [];
 
+    // console.log("operadoresDaTurma");
+    // console.log(operadoresDaTurma);
+    // console.log("equipamentosIndisponiveis");
+    // console.log(equipamentosIndisponiveis);
+    // console.log("operadoresDisponiveis");
+    // console.log(operadoresDisponiveis);
 
 
     equipamentos.sort((a, b) => {
@@ -261,9 +270,9 @@ async function carregarAplicacao() {
     atualizarTituloEscalas();
 
 
-
+    // console.log("resetarParametros");
     await resetarParametros();
-    // console.log(operadores);
+
     renderizarConfiguracoes();
 
     atribuirEventos();
