@@ -59,7 +59,7 @@ function init() {
                     Toastify({
                         text: "Login feito com sucesso!",
                         duration: 3000,
-                        gravity: "top", // `top` or `bottom`
+                        gravity: "top",
                         position: "right", // `left`, `center` or `right`
                         stopOnFocus: true, // Prevents dismissing of toast on hover
                         style: {
