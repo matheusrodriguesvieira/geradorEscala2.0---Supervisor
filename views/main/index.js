@@ -623,7 +623,10 @@ function atribuirEventos() {
 
 window.addEventListener('load', async () => {
 
-    if (sessionStorage.getItem('data') != null) {
+    if (sessionStorage.getItem('data') == null) {
+
+        window.location.replace('../Login/index.html');
+    } else {
         let loading = document.querySelector('.screen-loading-container');
 
         let data = JSON.parse(sessionStorage.getItem('data'));
@@ -635,8 +638,6 @@ window.addEventListener('load', async () => {
 
         await carregarAplicacao();
         loading.classList.toggle('mostrar');
-    } else {
-        window.location.replace('../Login/index.html');
     }
 
 });
