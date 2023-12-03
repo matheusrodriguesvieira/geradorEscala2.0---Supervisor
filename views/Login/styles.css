@@ -190,3 +190,27 @@
 .mostrar {
     display: flex;
 }
+
+@media screen and (max-width: 720px) {
+
+    .header-login-container h1 {
+        font-size: 18px;
+    }
+
+    .login-container {
+        width: 90%;
+    }
+
+    .loading-progress {
+        /* background-color: #B95946; */
+        height: 20%;
+        width: 20%;
+    }
+
+    .loading-progress span {
+        width: 15px;
+        height: 15px;
+    }
+
+
+}
