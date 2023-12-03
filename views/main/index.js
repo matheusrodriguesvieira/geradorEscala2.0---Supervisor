@@ -622,7 +622,7 @@ function atribuirEventos() {
 
 
 window.addEventListener('load', async () => {
-
+    console.log(sessionStorage.getItem('data'));
     if (sessionStorage.getItem('data') == null) {
 
         window.location.replace('../Login/index.html');
