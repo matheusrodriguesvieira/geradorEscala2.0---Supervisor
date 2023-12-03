@@ -82,7 +82,7 @@ async function fetchData() {
                     }
                 }).showToast();
                 setTimeout(() => {
-                    window.location.replace('../Login/index.html');
+                    window.location.replace('../login/index.html');
                 }, 3000);
             } else {
                 equipamentos = dados;
@@ -125,7 +125,7 @@ async function fetchData() {
                     }
                 }).showToast();
                 setTimeout(() => {
-                    window.location.replace('../Login/index.html');
+                    window.location.replace('../login/index.html');
                 }, 3000);
             } else {
                 operadoresDaTurma = dados;
@@ -167,7 +167,7 @@ async function fetchData() {
                     }
                 }).showToast();
                 setTimeout(() => {
-                    window.location.replace('../Login/index.html');
+                    window.location.replace('../login/index.html');
                 }, 3000);
             } else {
                 listaEscalaDaTurma = dados;
@@ -291,7 +291,7 @@ function atualizarTelaEscalas() {
                                 }
                             }).showToast();
                             setTimeout(() => {
-                                window.location.replace('../Login/index.html');
+                                window.location.replace('../login/index.html');
                             }, 3000);
                         } else {
                             let indice = listaEscalaDaTurma.indexOf(elementoParaRemover);
@@ -455,7 +455,7 @@ function renderizarConfiguracoes() {
                             }
                         }).showToast();
                         setTimeout(() => {
-                            window.location.replace('../Login/index.html');
+                            window.location.replace('../login/index.html');
                         }, 3000);
                     } else {
 
@@ -532,7 +532,7 @@ function renderizarConfiguracoes() {
                         }).showToast();
 
                         setTimeout(() => {
-                            window.location.replace('../Login/index.html');
+                            window.location.replace('../login/index.html');
                         }, 3000);
                     } else {
 
@@ -567,7 +567,7 @@ function switchTelaConfiguracao() {
 }
 function mostrarTela2() {
 
-    window.location.href = '../Gerar-escala/index.html';
+    window.location.href = '../gerar-escala/index.html';
 
 
 
@@ -625,7 +625,7 @@ window.addEventListener('load', async () => {
     console.log(sessionStorage.getItem('data'));
     if (sessionStorage.getItem('data') == null) {
 
-        window.location.replace('../Login/index.html');
+        window.location.replace('../login/index.html');
     } else {
         let loading = document.querySelector('.screen-loading-container');
 

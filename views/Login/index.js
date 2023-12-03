@@ -67,7 +67,7 @@ function init() {
                         }
                     }).showToast();
 
-                    window.location.href = '../Main/index.html';
+                    window.location.href = '../main/index.html';
 
                 }
 

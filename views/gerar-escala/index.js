@@ -70,7 +70,7 @@ async function fetchData(method, data, param) {
                         }
                     }).showToast();
                     setTimeout(() => {
-                        window.location.replace('../Login/index.html');
+                        window.location.replace('../login/index.html');
                     }, 3000);
                 } else {
                     listaEscalas = dados;
@@ -109,7 +109,7 @@ async function fetchData(method, data, param) {
                         }
                     }).showToast();
                     setTimeout(() => {
-                        window.location.replace('../Login/index.html');
+                        window.location.replace('../login/index.html');
                     }, 3000);
                 } else {
                     if (dados.id != null) {
@@ -741,25 +741,6 @@ function resetarParametros() {
     listaEscalas = {};
 }
 
-function mostrarTela1() {
-    window.location.href = '../tela2/index.html';
-
-
-
-    // let containerEscala = document.querySelector('.creditosEOperadoresForaEscala');
-    // let textoGeracao = document.querySelector('.creditsEscalaContainer');
-    // let ulOperadoresForaEscala = document.querySelector('.operadoresForaEscalaContainer > ul');
-    // ulOperadoresForaEscala.innerHTML = '';
-
-
-    // if (textoGeracao !== null) {
-    //     containerEscala.removeChild(textoGeracao);
-    // }
-
-    // btnGerarEscala.hidden = false;
-    // // btnSalvarEscala.hidden = false;
-    // btnMostrarTela3.hidden = false;
-}
 
 
 async function mostrarTelaEdicao(col) {
@@ -1022,7 +1003,7 @@ async function carregarAplicacao() {
 function atribuirEventos() {
     // // BOTAO VOLTAR DA TELA 2
     btnMostrarTela1.addEventListener('click', () => {
-        window.location.href = '../Main/index.html';
+        window.location.href = '../main/index.html';
     });
 
     btnEditarEscala.forEach((btnEditar, index) => {
@@ -1217,7 +1198,7 @@ function atribuirEventos() {
 
 window.addEventListener('load', async () => {
     if (sessionStorage.getItem('turma') == null || sessionStorage.getItem('data') == null) {
-        window.location.replace('../Login/index.html');
+        window.location.replace('../login/index.html');
     }
     let data = JSON.parse(sessionStorage.getItem('data'));
     token = data.token;
