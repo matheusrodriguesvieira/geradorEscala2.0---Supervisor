@@ -1,6 +1,7 @@
 var equipamentos;
 var turma;
 var operadoresDaTurma;
+var token;
 // -----------------------------VARIÁVEIS DE BANCO DE DADOS-----------------------------
 // USADA PARA GUARDAR OS EQUIPAMENTOS DISPONÍVEIS DO BANCO DE DADOS;
 var equipamentosDisponiveis;
@@ -45,12 +46,35 @@ async function fetchData(method, data, param) {
 
     if (method == 'GET') {
         const URI = `https://backend-rotas-alternativas.vercel.app/listaEscalas/show/${param}`;
+        const configuracao = {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': token
+            },
+        };
 
-
-        await fetch(URI)
+        await fetch(URI, configuracao)
             .then(resposta => resposta.json()) // Converte a resposta para JSON
-            .then(dadosResposta => {
-                listaEscalas = dadosResposta;
+            .then(dados => {
+
+                if (dados.error) {
+                    Toastify({
+                        text: dados.message,
+                        duration: 3000,
+                        gravity: "top", // `top` or `bottom`
+                        position: "right", // `left`, `center` or `right`
+                        stopOnFocus: true, // Prevents dismissing of toast on hover
+                        style: {
+                            background: "rgba(192, 57, 43,1.0)",
+                        }
+                    }).showToast();
+                    setTimeout(() => {
+                        window.location.replace('../Login/index.html');
+                    }, 3000);
+                } else {
+                    listaEscalas = dados;
+                }
             })
             .catch(erro => console.error('Erro:', erro));
 
@@ -60,7 +84,8 @@ async function fetchData(method, data, param) {
         const configuracao = {
             method: method,
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                authorization: token
             },
             body: JSON.stringify(data)
         };
@@ -69,26 +94,12 @@ async function fetchData(method, data, param) {
             .then(resposta => {
                 return resposta.json()
             }) // Converte a resposta para JSON
-            .then(dadosResposta => {
-                // console.log(dadosResposta.id);
+            .then(dados => {
+                // console.log(dados.id);
 
-                if (dadosResposta.id != null) {
-                    idlista = dadosResposta.id;
+                if (dados.error) {
                     Toastify({
-                        text: "Escala gerada com sucesso",
-                        duration: 3000,
-                        gravity: "top", // `top` or `bottom`
-                        position: "right", // `left`, `center` or `right`
-                        stopOnFocus: true, // Prevents dismissing of toast on hover
-                        style: {
-                            background: "rgba(39, 174, 96,1.0)",
-                        }
-                    }).showToast();
-
-                } else {
-
-                    Toastify({
-                        text: dadosResposta.message.toUpperCase(),
+                        text: dados.message,
                         duration: 3000,
                         gravity: "top", // `top` or `bottom`
                         position: "right", // `left`, `center` or `right`
@@ -97,6 +108,36 @@ async function fetchData(method, data, param) {
                             background: "rgba(192, 57, 43,1.0)",
                         }
                     }).showToast();
+                    setTimeout(() => {
+                        window.location.replace('../Login/index.html');
+                    }, 3000);
+                } else {
+                    if (dados.id != null) {
+                        idlista = dados.id;
+                        Toastify({
+                            text: "Escala gerada com sucesso",
+                            duration: 3000,
+                            gravity: "top", // `top` or `bottom`
+                            position: "right", // `left`, `center` or `right`
+                            stopOnFocus: true, // Prevents dismissing of toast on hover
+                            style: {
+                                background: "rgba(39, 174, 96,1.0)",
+                            }
+                        }).showToast();
+
+                    } else {
+
+                        Toastify({
+                            text: dados.message.toUpperCase(),
+                            duration: 3000,
+                            gravity: "top", // `top` or `bottom`
+                            position: "right", // `left`, `center` or `right`
+                            stopOnFocus: true, // Prevents dismissing of toast on hover
+                            style: {
+                                background: "rgba(192, 57, 43,1.0)",
+                            }
+                        }).showToast();
+                    }
                 }
 
 
@@ -115,7 +156,8 @@ async function fetchData(method, data, param) {
         const configuracao = {
             method: method,
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                authorization: token
             },
             body: JSON.stringify(data)
         };
@@ -123,12 +165,22 @@ async function fetchData(method, data, param) {
             .then(resposta => {
                 return resposta.json()
             }) // Converte a resposta para JSON
-            .then(dadosResposta => {
+            .then(dados => {
                 // console.log(dadosResposta.id);
-                error = dadosResposta.error;
+                error = dados.error;
 
-                if (!error) {
-
+                if (dados.error) {
+                    Toastify({
+                        text: dados.message.toUpperCase(),
+                        duration: 3000,
+                        gravity: "top", // `top` or `bottom`
+                        position: "right", // `left`, `center` or `right`
+                        stopOnFocus: true, // Prevents dismissing of toast on hover
+                        style: {
+                            background: "rgba(192, 57, 43,1.0)",
+                        }
+                    }).showToast();
+                } else {
                     Toastify({
                         text: "Salvo com sucesso",
                         duration: 1500,
@@ -139,18 +191,6 @@ async function fetchData(method, data, param) {
                             background: "rgba(39, 174, 96,1.0)",
                         }
                     }).showToast();
-                } else {
-                    Toastify({
-                        text: dadosResposta.message.toUpperCase(),
-                        duration: 3000,
-                        gravity: "top", // `top` or `bottom`
-                        position: "right", // `left`, `center` or `right`
-                        stopOnFocus: true, // Prevents dismissing of toast on hover
-                        style: {
-                            background: "rgba(192, 57, 43,1.0)",
-                        }
-                    }).showToast();
-
                 }
 
 
@@ -734,10 +774,33 @@ async function mostrarTelaEdicao(col) {
             let operadores;
 
             const URI = `https://backend-rotas-alternativas.vercel.app/operadores/index`;
-            await fetch(URI)
+            const configuracao = {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    authorization: token
+                },
+            }
+
+            await fetch(URI, configuracao)
                 .then(resposta => resposta.json()) // Converte a resposta para JSON
-                .then(dadosResposta => {
-                    operadores = dadosResposta;
+                .then(dados => {
+
+                    if (dados.error) {
+                        Toastify({
+                            text: dados.message.toUpperCase(),
+                            duration: 3000,
+                            gravity: "top", // `top` or `bottom`
+                            position: "right", // `left`, `center` or `right`
+                            stopOnFocus: true, // Prevents dismissing of toast on hover
+                            style: {
+                                background: "rgba(192, 57, 43,1.0)",
+                            }
+                        }).showToast();
+                    } else {
+
+                        operadores = dados;
+                    }
                 })
                 .catch(erro => console.error('Erro:', erro));
 
@@ -939,7 +1002,7 @@ async function carregarAplicacao() {
         btnGerarEscala.disabled = true;
 
         idLista = JSON.parse(sessionStorage.getItem("idLista"));
-        // console.log(idlista);
+        // console.log(idLista);
         await fetchData("GET", "", idLista);
 
         // console.log(listaEscalas);
@@ -959,7 +1022,7 @@ async function carregarAplicacao() {
 function atribuirEventos() {
     // // BOTAO VOLTAR DA TELA 2
     btnMostrarTela1.addEventListener('click', () => {
-        window.location.href = '../main/index.html';
+        window.location.href = '../Main/index.html';
     });
 
     btnEditarEscala.forEach((btnEditar, index) => {
@@ -1153,10 +1216,11 @@ function atribuirEventos() {
 
 
 window.addEventListener('load', async () => {
-    if (sessionStorage.getItem('turma') == null) {
-        window.location.replace('../main/index.html');
+    if (sessionStorage.getItem('turma') == null || sessionStorage.getItem('data') == null) {
+        window.location.replace('../Login/index.html');
     }
-
+    let data = JSON.parse(sessionStorage.getItem('data'));
+    token = data.token;
     let loading = document.querySelector('.screen-loading-container');
 
     await carregarAplicacao();

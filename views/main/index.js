@@ -1,4 +1,5 @@
-// var operadores;
+var token;
+var usuario;
 var equipamentos;
 var turma;
 var operadoresDaTurma;
@@ -50,7 +51,13 @@ async function fetchData() {
     const listaEscalaUrl = `https://backend-rotas-alternativas.vercel.app/listaEscalas/index?turma=${turma}`;
 
     // Fazendo uma requisição GET
-    await fetch(equipamentosUrl)
+    await fetch(equipamentosUrl, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': token
+        },
+    })
         .then(response => {
             // Verifica se a requisição foi bem-sucedida (status 200-299)
             if (!response.ok) {
@@ -60,9 +67,27 @@ async function fetchData() {
             // Converte a resposta para JSON
             return response.json();
         })
-        .then(equipamentosData => {
+        .then(dados => {
             // Trabalha com os dados recebidos
-            equipamentos = equipamentosData;
+
+            if (dados.error) {
+                Toastify({
+                    text: dados.message,
+                    duration: 3000,
+                    gravity: "top", // `top` or `bottom`
+                    position: "right", // `left`, `center` or `right`
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    style: {
+                        background: "rgba(192, 57, 43,1.0)",
+                    }
+                }).showToast();
+                setTimeout(() => {
+                    window.location.replace('../Login/index.html');
+                }, 3000);
+            } else {
+                equipamentos = dados;
+            }
+
 
         })
         .catch(error => {
@@ -71,7 +96,12 @@ async function fetchData() {
         });
 
 
-    await fetch(operadoresUrl)
+    await fetch(operadoresUrl, {
+        method: 'GET',
+        headers: {
+            authorization: token
+        },
+    })
         .then(response => {
             // Verifica se a requisição foi bem-sucedida (status 200-299)
             if (!response.ok) {
@@ -81,10 +111,26 @@ async function fetchData() {
             // Converte a resposta para JSON
             return response.json();
         })
-        .then(operadoresData => {
-            // Trabalha com os dados recebidos
-            // operadoresDaTurma = JSON.parse(operadoresData);
-            operadoresDaTurma = operadoresData;
+        .then(dados => {
+
+            if (dados.error) {
+                Toastify({
+                    text: dados.message,
+                    duration: 3000,
+                    gravity: "top", // `top` or `bottom`
+                    position: "right", // `left`, `center` or `right`
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    style: {
+                        background: "rgba(192, 57, 43,1.0)",
+                    }
+                }).showToast();
+                setTimeout(() => {
+                    window.location.replace('../Login/index.html');
+                }, 3000);
+            } else {
+                operadoresDaTurma = dados;
+            }
+
 
         })
         .catch(error => {
@@ -92,7 +138,12 @@ async function fetchData() {
             console.error(error);
         });
 
-    await fetch(listaEscalaUrl)
+    await fetch(listaEscalaUrl, {
+        method: 'GET',
+        headers: {
+            authorization: token
+        },
+    })
         .then(response => {
             // Verifica se a requisição foi bem-sucedida (status 200-299)
             if (!response.ok) {
@@ -102,10 +153,25 @@ async function fetchData() {
             // Converte a resposta para JSON
             return response.json();
         })
-        .then(data => {
+        .then(dados => {
             // Trabalha com os dados recebidos
-            listaEscalaDaTurma = data;
-            console.log(listaEscalaDaTurma);
+            if (dados.error) {
+                Toastify({
+                    text: dados.message,
+                    duration: 3000,
+                    gravity: "top", // `top` or `bottom`
+                    position: "right", // `left`, `center` or `right`
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    style: {
+                        background: "rgba(192, 57, 43,1.0)",
+                    }
+                }).showToast();
+                setTimeout(() => {
+                    window.location.replace('../Login/index.html');
+                }, 3000);
+            } else {
+                listaEscalaDaTurma = dados;
+            }
         })
         .catch(error => {
             // Lida com erros durante a requisição
@@ -129,13 +195,6 @@ async function resetarParametros() {
     operadoresDisponiveis = operadoresDaTurma.filter((operador) => operador.disponivel == true);
     escala = [];
 
-    // console.log("operadoresDaTurma");
-    // console.log(operadoresDaTurma);
-    // console.log("equipamentosIndisponiveis");
-    // console.log(equipamentosIndisponiveis);
-    // console.log("operadoresDisponiveis");
-    // console.log(operadoresDisponiveis);
-
 
     equipamentos.sort((a, b) => {
         return a.tag < b.tag ? -1 : a.tag > b.tag ? 1 : 0;
@@ -143,7 +202,6 @@ async function resetarParametros() {
     operadoresDaTurma.sort((a, b) => {
         return a.nome < b.nome ? -1 : a.nome > b.nome ? 1 : 0;
     })
-    // console.log(operadoresDaTurma);
 }
 
 
@@ -208,7 +266,8 @@ function atualizarTelaEscalas() {
                 const CONFIGURAÇÃO = {
                     method: "DELETE",
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'authorization': token
                     }
                 }
 
@@ -216,25 +275,44 @@ function atualizarTelaEscalas() {
 
                 await fetch(URI, CONFIGURAÇÃO)
                     .then(response => {
-                        return response.json
+                        return response.json();
                     })
-                    .then(dados => { console.log(dados) })
+                    .then(dados => {
+                        if (dados.error != null) {
+
+                            Toastify({
+                                text: dados.message,
+                                duration: 3000,
+                                gravity: "top", // `top` or `bottom`
+                                position: "right", // `left`, `center` or `right`
+                                stopOnFocus: true, // Prevents dismissing of toast on hover
+                                style: {
+                                    background: "rgba(192, 57, 43,1.0)",
+                                }
+                            }).showToast();
+                            setTimeout(() => {
+                                window.location.replace('../Login/index.html');
+                            }, 3000);
+                        } else {
+                            let indice = listaEscalaDaTurma.indexOf(elementoParaRemover);
+                            listaEscalaDaTurma.splice(indice, 1);
+                            atualizarTelaEscalas();
+                            Toastify({
+                                text: "Escala deletada com sucesso",
+                                duration: 1500,
+                                gravity: "top", // `top` or `bottom`
+                                position: "right", // `left`, `center` or `right`
+                                stopOnFocus: true, // Prevents dismissing of toast on hover
+                                style: {
+                                    background: "rgba(39, 174, 96,1.0)",
+                                }
+                            }).showToast();
+                        }
+                    })
                     .catch(error => error.response);
 
 
-                let indice = listaEscalaDaTurma.indexOf(elementoParaRemover);
-                listaEscalaDaTurma.splice(indice, 1);
-                atualizarTelaEscalas();
-                Toastify({
-                    text: "Escala deletada com sucesso",
-                    duration: 1500,
-                    gravity: "top", // `top` or `bottom`
-                    position: "right", // `left`, `center` or `right`
-                    stopOnFocus: true, // Prevents dismissing of toast on hover
-                    style: {
-                        background: "rgba(39, 174, 96,1.0)",
-                    }
-                }).showToast();
+
 
             });
 
@@ -350,7 +428,8 @@ function renderizarConfiguracoes() {
             const CONFIGURAÇÃO = {
                 method: "PUT",
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'authorization': token
                 },
                 body: JSON.stringify(BODYDATA)
             }
@@ -362,7 +441,36 @@ function renderizarConfiguracoes() {
                 .then(response => {
                     return response.json();
                 })
-                .then(dados => { console.log(dados) })
+                .then(dados => {
+                    console.log(dados);
+                    if (dados.error) {
+                        Toastify({
+                            text: dados.message,
+                            duration: 3000,
+                            gravity: "top", // `top` or `bottom`
+                            position: "right", // `left`, `center` or `right`
+                            stopOnFocus: true, // Prevents dismissing of toast on hover
+                            style: {
+                                background: "rgba(192, 57, 43,1.0)",
+                            }
+                        }).showToast();
+                        setTimeout(() => {
+                            window.location.replace('../Login/index.html');
+                        }, 3000);
+                    } else {
+
+                        Toastify({
+                            text: "Atualizado com sucesso!",
+                            duration: 1500,
+                            gravity: "top", // `top` or `bottom`
+                            position: "right", // `left`, `center` or `right`
+                            stopOnFocus: true, // Prevents dismissing of toast on hover
+                            style: {
+                                background: "rgba(39, 174, 96,1.0)",
+                            }
+                        }).showToast();
+                    }
+                })
                 .catch(error => error.response);
 
             btnVoltarConfiguracao.hidden = false;
@@ -394,7 +502,8 @@ function renderizarConfiguracoes() {
             const CONFIGURAÇÃO = {
                 method: "PUT",
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'authorization': token
                 },
                 body: JSON.stringify(BODYDATA)
             }
@@ -404,9 +513,41 @@ function renderizarConfiguracoes() {
 
             await fetch(URI, CONFIGURAÇÃO)
                 .then(response => {
+                    // console.log(response);
                     return response.json();
                 })
-                .then(dados => { console.log(dados) })
+                .then(dados => {
+                    console.log('dados');
+                    console.log(dados);
+                    if (dados.error) {
+                        Toastify({
+                            text: dados.message,
+                            duration: 3000,
+                            gravity: "top", // `top` or `bottom`
+                            position: "right", // `left`, `center` or `right`
+                            stopOnFocus: true, // Prevents dismissing of toast on hover
+                            style: {
+                                background: "rgba(192, 57, 43,1.0)",
+                            }
+                        }).showToast();
+
+                        setTimeout(() => {
+                            window.location.replace('../Login/index.html');
+                        }, 3000);
+                    } else {
+
+                        Toastify({
+                            text: "Atualizado com sucesso!",
+                            duration: 1500,
+                            gravity: "top", // `top` or `bottom`
+                            position: "right", // `left`, `center` or `right`
+                            stopOnFocus: true, // Prevents dismissing of toast on hover
+                            style: {
+                                background: "rgba(39, 174, 96,1.0)",
+                            }
+                        }).showToast();
+                    }
+                })
                 .catch(error => error.response);
 
             btnVoltarConfiguracao.hidden = false;
@@ -426,10 +567,8 @@ function switchTelaConfiguracao() {
 }
 function mostrarTela2() {
 
-    window.location.href = '../gerar-escala/index.html';
-    sessionStorage.setItem('turma', turma);
-    sessionStorage.setItem('operadoresDaTurma', JSON.stringify(operadoresDaTurma));
-    sessionStorage.setItem('equipamentos', JSON.stringify(equipamentos));
+    window.location.href = '../Gerar-escala/index.html';
+
 
 
     // let containerEscala = document.querySelector('.creditosEOperadoresForaEscala');
@@ -448,7 +587,13 @@ function mostrarTela2() {
 }
 
 function atribuirEventos() {
-    btnMostrarTela2.addEventListener('click', mostrarTela2)
+    btnMostrarTela2.addEventListener('click', () => {
+        sessionStorage.removeItem('idLista');
+        sessionStorage.setItem('turma', turma);
+        sessionStorage.setItem('operadoresDaTurma', JSON.stringify(operadoresDaTurma));
+        sessionStorage.setItem('equipamentos', JSON.stringify(equipamentos));
+        mostrarTela2();
+    })
 
     btnMostrarConfiguracao.addEventListener('click', switchTelaConfiguracao);
 
@@ -470,22 +615,6 @@ function atribuirEventos() {
         // }
     })
 
-    // // BOTAO VOLTAR DA TELA 2
-    // btnTela2Voltar.addEventListener('click', () => {
-    //     btnGerarEscala.disabled = false;
-
-    //     btnEditarEscala.forEach(btn => {
-    //         btn.hidden = false;
-    //     });
-
-    //     tela2.classList.add('esconder');
-    //     tela2.classList.remove('mostrar');
-
-    //     //limpa a tela de escalas ao voltar
-    //     resetarParametros();
-    //     let tbody = document.querySelector('tbody');
-    //     tbody.innerHTML = '';
-    // });
 
 
 
@@ -493,10 +622,21 @@ function atribuirEventos() {
 
 
 window.addEventListener('load', async () => {
-    sessionStorage.clear();
 
-    let loading = document.querySelector('.screen-loading-container');
+    if (sessionStorage.getItem('data') != null) {
+        let loading = document.querySelector('.screen-loading-container');
 
-    await carregarAplicacao();
-    loading.classList.toggle('mostrar');
+        let data = JSON.parse(sessionStorage.getItem('data'));
+        token = data.token;
+        usuario = data.usuario;
+
+        // console.log(token);
+
+
+        await carregarAplicacao();
+        loading.classList.toggle('mostrar');
+    } else {
+        window.location.replace('../Login/index.html');
+    }
+
 });

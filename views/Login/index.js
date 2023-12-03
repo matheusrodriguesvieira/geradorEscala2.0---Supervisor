@@ -4,28 +4,87 @@ const BTN_ENTRAR = document.querySelector('#btn-entrar');
 
 
 function init() {
-    BTN_ENTRAR.addEventListener('click', (e) => {
+    sessionStorage.clear();
+
+    BTN_ENTRAR.addEventListener('click', async (e) => {
         e.preventDefault();
-        console.log(INPUT_USERNAME.value.length);
-        if (isValidInput()) {
-            console.log('enviando os dados');
-        } else {
-            Toastify({
-                text: "Usuário precisa ser no formato A111111",
-                duration: 3000,
-                gravity: "top", // `top` or `bottom`
-                position: "right", // `left`, `center` or `right`
-                stopOnFocus: false, // Prevents dismissing of toast on hover
-                style: {
-                    background: "rgba(192, 57, 43,1.0)",
-                }
-            }).showToast();
+
+
+
+        const DATA = {
+            login: INPUT_USERNAME.value,
+            senha: INPUT_PASSWORD.value
         }
+        // const URL = 'backend-rotas-alternativas.vercel.app/supervisores/login';
+        const URI = 'https://backend-rotas-alternativas.vercel.app/supervisores/login';
+        const CONFIGURACAO = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(DATA)
+        };
+
+        let componentLoading = document.querySelector('.component-loading-container');
+        // console.log(componentLoading);
+        componentLoading.classList.toggle('mostrar');
+
+        await fetch(URI, CONFIGURACAO)
+            .then(resposta => {
+                return resposta.json()
+            })
+            .then(dadosResposta => {
+                // console.log(dadosResposta.id);
+
+                if (dadosResposta.error) {
+                    Toastify({
+                        text: dadosResposta.message,
+                        duration: 3000,
+                        gravity: "top", // `top` or `bottom`
+                        position: "right", // `left`, `center` or `right`
+                        stopOnFocus: true, // Prevents dismissing of toast on hover
+                        style: {
+                            background: "rgba(192, 57, 43,1.0)",
+                        }
+                    }).showToast();
+                } else {
+
+                    let data = {
+                        token: dadosResposta.token,
+                        usuario: dadosResposta.data.name
+                    }
+
+                    sessionStorage.setItem('data', JSON.stringify(data));
+
+                    Toastify({
+                        text: "Login feito com sucesso!",
+                        duration: 3000,
+                        gravity: "top", // `top` or `bottom`
+                        position: "right", // `left`, `center` or `right`
+                        stopOnFocus: true, // Prevents dismissing of toast on hover
+                        style: {
+                            background: "rgba(39, 174, 96,1.0)",
+                        }
+                    }).showToast();
+
+                    window.location.href = '../Main/index.html';
+
+                }
+
+            })
+            .catch(erro => {
+                console.error('Erro:', erro);
+                console.error('Resposta do servidor:', erro.response);
+            });
+
+        componentLoading.classList.toggle('mostrar');
+
+
     })
 }
 
 function isValidInput() {
-    if (INPUT_USERNAME.value.length < 7 || INPUT_USERNAME.value.length > 7) {
+    if (INPUT_USERNAME.value.length < 6 || INPUT_USERNAME.value.length > 7) {
         return false;
     } else {
         return true
