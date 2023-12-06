@@ -184,11 +184,7 @@ async function fetchData() {
 
 
 async function resetarParametros() {
-    // console.log("fetchData");
-
     await fetchData();
-    // console.log("equipamentosDisponiveis");
-
 
     equipamentosDisponiveis = equipamentos.filter((equipamento) => equipamento.disponivel == true);
     equipamentosIndisponiveis = equipamentos.filter((equipamento) => equipamento.disponivel == false);
@@ -214,7 +210,6 @@ async function resetarParametros() {
 // ATUALIZA O TÍTULO E O PARAMETRO DA TURMA
 function atualizarTituloEscalas() {
     turma = select.value;
-    // console.log(turma);
     tituloEscalas.innerHTML = '';
     tituloEscalas.innerHTML = `Escalas Turma ${turma.toUpperCase()}`;
 }
@@ -271,7 +266,6 @@ function atualizarTelaEscalas() {
                     }
                 }
 
-                // console.log(elementoParaRemover.idlista);
 
                 await fetch(URI, CONFIGURAÇÃO)
                     .then(response => {
@@ -339,16 +333,10 @@ function atualizarTelaEscalas() {
 
 // FUNÇÃO RESPONSÁVEL POR CARREGAR TODOS OS EVENTOS E FUNCIONALIDADES DA APLICAÇÃO
 async function carregarAplicacao() {
-    // localStorage.clear();
-    // console.log(JSON.parse(localStorage.getItem('equipamentos')));
-    // console.log(JSON.parse(localStorage.getItem('operadores')));
-    // console.log('LISTA ESCALAS');
-    // console.log(JSON.parse(localStorage.getItem('listaEscalas')));
-
+    W
     atualizarTituloEscalas();
 
 
-    // console.log("resetarParametros");
     await resetarParametros();
 
     renderizarConfiguracoes();
@@ -357,8 +345,7 @@ async function carregarAplicacao() {
 
 
     atualizarTelaEscalas();
-    // if (listaEscalaDaTurma.length > 0) {
-    // }
+
 }
 
 function renderizarConfiguracoes() {
@@ -420,7 +407,6 @@ function renderizarConfiguracoes() {
             divEquipamentoStatus.innerText = '';
             divEquipamentoStatus.innerText = equipamentos[index].disponivel ? "Disponível" : "Indisponível";
 
-            // console.log(equipamentos[index].tag);
             const URI = `https://backend-rotas-alternativas.vercel.app/equipamentos/update/${equipamentos[index].tag}`;
             const BODYDATA = {
                 disponivel: equipamentos[index].disponivel ? "1" : "0"
@@ -433,7 +419,6 @@ function renderizarConfiguracoes() {
                 },
                 body: JSON.stringify(BODYDATA)
             }
-            // console.log(equipamentos[index].disponivel);
 
             btnVoltarConfiguracao.hidden = true;
 
@@ -442,7 +427,6 @@ function renderizarConfiguracoes() {
                     return response.json();
                 })
                 .then(dados => {
-                    console.log(dados);
                     if (dados.error) {
                         Toastify({
                             text: dados.message,
@@ -475,9 +459,7 @@ function renderizarConfiguracoes() {
 
             btnVoltarConfiguracao.hidden = false;
 
-            // salvarParametros();
-            // console.log(equipamentos[index].disponivel);
-            // renderizarConfiguracoes();
+
         });
 
 
@@ -507,18 +489,14 @@ function renderizarConfiguracoes() {
                 },
                 body: JSON.stringify(BODYDATA)
             }
-            // console.log(operadoresDaTurma[index].matricula);
 
             btnVoltarConfiguracao.hidden = true;
 
             await fetch(URI, CONFIGURAÇÃO)
                 .then(response => {
-                    // console.log(response);
                     return response.json();
                 })
                 .then(dados => {
-                    console.log('dados');
-                    console.log(dados);
                     if (dados.error) {
                         Toastify({
                             text: dados.message,
@@ -551,10 +529,6 @@ function renderizarConfiguracoes() {
                 .catch(error => error.response);
 
             btnVoltarConfiguracao.hidden = false;
-            // salvarParametros();
-            // console.log(divOperadorStatus)
-
-            // renderizarConfiguracoes();
         });
     });
 
@@ -571,19 +545,6 @@ function mostrarTela2() {
 
 
 
-    // let containerEscala = document.querySelector('.creditosEOperadoresForaEscala');
-    // let textoGeracao = document.querySelector('.creditsEscalaContainer');
-    // let ulOperadoresForaEscala = document.querySelector('.operadoresForaEscalaContainer > ul');
-    // ulOperadoresForaEscala.innerHTML = '';
-
-
-    // if (textoGeracao !== null) {
-    //     containerEscala.removeChild(textoGeracao);
-    // }
-
-    // btnGerarEscala.hidden = false;
-    // // btnSalvarEscala.hidden = false;
-    // btnMostrarTela3.hidden = false;
 }
 
 function atribuirEventos() {
@@ -601,18 +562,14 @@ function atribuirEventos() {
 
     select.addEventListener('change', async () => {
         let componentLoading = document.querySelector('.component-loading-container');
-        // console.log(componentLoading);
         componentLoading.classList.toggle('mostrar');
         atualizarTituloEscalas();
         await resetarParametros();
         renderizarConfiguracoes();
 
-        // console.log('resetou');
 
         atualizarTelaEscalas();
         componentLoading.classList.toggle('mostrar');
-        // if (listaEscalaDaTurma.length > 0) {
-        // }
     })
 
 
@@ -622,7 +579,6 @@ function atribuirEventos() {
 
 
 window.addEventListener('load', async () => {
-    console.log(sessionStorage.getItem('data'));
     if (sessionStorage.getItem('data') == null) {
 
         window.location.replace('../login/index.html');
@@ -633,7 +589,6 @@ window.addEventListener('load', async () => {
         token = data.token;
         usuario = data.usuario;
 
-        // console.log(token);
 
 
         await carregarAplicacao();

@@ -95,7 +95,6 @@ async function fetchData(method, data, param) {
                 return resposta.json()
             }) // Converte a resposta para JSON
             .then(dados => {
-                // console.log(dados.id);
 
                 if (dados.error) {
                     Toastify({
@@ -166,7 +165,6 @@ async function fetchData(method, data, param) {
                 return resposta.json()
             }) // Converte a resposta para JSON
             .then(dados => {
-                // console.log(dadosResposta.id);
                 error = dados.error;
 
                 if (dados.error) {
@@ -213,8 +211,6 @@ async function fetchData(method, data, param) {
 
 function montarEscala(tag, nome, matricula, atividade = "atualize", localizacao = 'atualize o local', transporte = 'micro') {
 
-    // console.log("mostrando tag: "+ tag);
-    // console.log("mostrando local: "+ local);
 
 
     let operadorEquipamento = {
@@ -292,7 +288,6 @@ function renderizarEscala(escala, operadoresForaEscala) {
 
     let ulOperadoresForaEscala = document.querySelector('.operadoresForaEscalaContainer > ul');
     ulOperadoresForaEscala.innerHTML = '';
-    // console.log(operadoresForaEscala);
     if (operadoresForaEscala.length > 0) {
         operadoresForaEscala.forEach(operador => {
             let li = `
@@ -310,27 +305,22 @@ function mostrarEscala() {
     resetarParametros();
     let contador = 0;
     console.log('mostrando escala');
-    // console.log(operadoresDisponiveis);
     while (equipamentosDisponiveis.length > 0 && operadoresDisponiveis.length > 0) {
         if (contador <= 20) {
-            console.log('escala 1');
             resetarParametros();
             gerarEscala(1);
             contador++;
         } else if (contador <= 40) {
-            console.log('escala 2');
             resetarParametros();
 
             gerarEscala(2);
             contador++;
         } else if (contador <= 60) {
-            console.log('escala 3');
             resetarParametros();
 
             gerarEscala(3);
             contador++;
         } else if (contador <= 80) {
-            console.log('escala 4');
             resetarParametros();
 
             gerarEscala(4);
@@ -353,17 +343,7 @@ function mostrarEscala() {
         })
     }
 
-    // console.log('repetições: ' + contador);
-    // console.log('escala: ');
-    // // console.log(escala.sort((a, b) => {
-    // //     return a.equipamento < b.equipamento ? -1 : a.equipamento > b.equipamento ? 1 : 0;
-    // // }));
-    // console.log(escala);
 
-    // console.log('operadores fora de escala: ');
-    // console.log(operadoresDisponiveis);
-    // console.log('equipamentos sem operador: ');
-    // console.log(equipamentosDisponiveis);
 }
 
 function gerarEscala(tipo) {
@@ -386,7 +366,6 @@ function escalarDragline() {
     ) && (
             operadoresDisponiveis.filter((operador) => operador.dragline == true).length != 0
         )) {
-        // console.log('dragline disponível. Quantidade: ' + (equipamentosDisponiveis.filter((equipamento) => equipamento.categoria == "dragline")).length);
 
 
         let draglines = equipamentosDisponiveis.filter((equipamento) => equipamento.categoria == "dragline");
@@ -396,22 +375,16 @@ function escalarDragline() {
             let equipamento = draglines[Math.floor(Math.random() * draglines.length)];
             let operador = operadores[Math.floor(Math.random() * operadores.length)];
 
-            // console.log('escala dragline');
-            // console.log(operadoresDisponiveis);
             equipamentosDisponiveis.splice(equipamentosDisponiveis.indexOf(equipamento), 1);
             operadoresDisponiveis.splice(operadoresDisponiveis.indexOf(operador), 1);
 
             draglines.splice(draglines.indexOf(equipamento), 1);
             operadores.splice(operadores.indexOf(operador), 1);
 
-            // console.log(equipamentosDisponiveis);
-            // console.log(operadoresDisponiveis);
 
             montarEscala(equipamento.tag, operador.nome, operador.matricula, equipamento.atividade, equipamento.local);
 
 
-            // console.log('escala: ');
-            // console.log(escala);
         }
 
         // VERIFICA SE TEM EQUIPAMENTO DISPONÍVEL E NÃO TEM OPERADOR
@@ -468,7 +441,6 @@ function escalarEHGP(preferencia = false) {
 
                     montarEscala(equipamento.tag, operador.nome, operador.matricula, equipamento.atividade, equipamento.local);
 
-                    // console.log(escala);
                 }
 
             }
@@ -477,7 +449,6 @@ function escalarEHGP(preferencia = false) {
             if (operadores.filter((operador) => (operador.d11 == false && operador.cat777 == true && operador.dragline == false)).length > 0) {
                 let operadoresApenasEhgpECat777 = operadores.filter((operador) => (operador.d11 == false && operador.cat777 == true && operador.dragline == false))
 
-                // console.log('operadoresApenasEhgpECat777: ' + operadoresApenasEhgpECat777);
                 while ((escavadeiras.length > 0) && (operadoresApenasEhgpECat777.length > 0)) {
                     let equipamento = escavadeiras[Math.floor(Math.random() * escavadeiras.length)];
                     let operador = operadoresApenasEhgpECat777[Math.floor(Math.random() * operadoresApenasEhgpECat777.length)];
@@ -491,7 +462,6 @@ function escalarEHGP(preferencia = false) {
 
                     montarEscala(equipamento.tag, operador.nome, operador.matricula, equipamento.atividade, equipamento.local);
 
-                    // console.log(escala);
                 }
             }
         }
@@ -747,7 +717,6 @@ async function mostrarTelaEdicao(col) {
 
     telaEdicao.classList.toggle('mostrar');
     let containerBtns = document.querySelector(`.personalizadoBtnContainer`);
-    // console.log(containerBtns);
     containerBtns.classList.toggle('esconder');
 
     if (telaEdicao.classList.contains('mostrar')) {
@@ -968,14 +937,6 @@ async function carregarAplicacao() {
 
 
 
-    // localStorage.clear();
-    // console.log(JSON.parse(localStorage.getItem('equipamentos')));
-    // console.log(JSON.parse(localStorage.getItem('operadores')));
-    // console.log('LISTA ESCALAS');
-    // console.log(JSON.parse(localStorage.getItem('listaEscalass')));
-
-    // atualizarTituloEscalas();
-
 
     resetarParametros();
 
@@ -983,21 +944,13 @@ async function carregarAplicacao() {
         btnGerarEscala.disabled = true;
 
         idLista = JSON.parse(sessionStorage.getItem("idLista"));
-        // console.log(idLista);
         await fetchData("GET", "", idLista);
 
-        // console.log(listaEscalas);
         renderizarEscala(listaEscalas.escala, listaEscalas.operadoresForaEscala);
 
     }
-    // console.log(operadores);
 
     atribuirEventos();
-    // renderizarConfiguracoes();
-
-    // if (listaEscalas.length > 0) {
-    //     atualizarTelaEscalas();
-    // }
 }
 
 function atribuirEventos() {
@@ -1010,14 +963,10 @@ function atribuirEventos() {
         btnEditar.addEventListener('click', (e) => {
 
             let tds = document.querySelectorAll(`td[col${index + 2}]`);
-            // console.log('clicando');
-
-            // verifica de tem escala gerada
             if (tds.length != 0) {
 
                 // verifica se nao tem checkbox em tela
                 if (document.querySelectorAll('.check-edicao').length == 0) {
-                    // console.log('adicionando check');
                     mostrarTelaEdicao(e.target);
 
                     btnMostrarTela1.disabled = true;
@@ -1036,8 +985,6 @@ function atribuirEventos() {
 
                     mostrarTelaEdicao(e.target);
 
-                    // let input = document.querySelector(`[inputMudanca]`);
-                    // input.value = '';
                     btnMostrarTela1.disabled = false;
                     btnGerarEscala.disabled = false;
 
@@ -1062,7 +1009,6 @@ function atribuirEventos() {
     });
 
     btnSalvarEdicao.addEventListener('click', async () => {
-        // alert('salvou');
         let tds = document.querySelectorAll(`td[col1]`);
         let checkboxes = document.querySelectorAll('.check-edicao');
         let input;
@@ -1079,7 +1025,6 @@ function atribuirEventos() {
         }
 
 
-        // console.log(input.value);
 
 
 
@@ -1100,14 +1045,12 @@ function atribuirEventos() {
                         let escala = { ...listaEscalas.escala[index] };
 
                         let matricula = input.value;
-                        // matricula = matricula[0].trim();
                         escala.matricula = parseInt(matricula);
 
                         atualizacoesLista.escala.push(escala);
 
 
                     } else if (check.getAttribute('col3') != null) {
-                        // console.log(listaEscalas);
                         let index = listaEscalas.escala.findIndex((element) => element.tag == tds[indice].innerText);
                         let escala = { ...listaEscalas.escala[index] };
                         escala.localizacao = input.value.toLowerCase();
@@ -1117,7 +1060,6 @@ function atribuirEventos() {
                     } else if (check.getAttribute('col4') != null) {
                         let index = listaEscalas.escala.findIndex((element) => element.tag == tds[indice].innerText);
 
-                        // listaEscalas.escala[index].transporte = input.value;
 
                         let escala = { ...listaEscalas.escala[index] };
                         escala.transporte = input.value.toLowerCase();
@@ -1134,7 +1076,6 @@ function atribuirEventos() {
                 }
             };
 
-            // console.log(atualizacoesLista);
 
             let loading = document.querySelector('.component-loading-container');
 
@@ -1159,12 +1100,10 @@ function atribuirEventos() {
         btnSalvarEdicao.disabled = false;
 
 
-        // console.log(listaEscalas);
 
     })
 
     btnGerarEscala.addEventListener('click', async () => {
-        // btnSalvarEscala.disabled = false;
         btnGerarEscala.disabled = true;
         let loading = document.querySelector('.component-loading-container');
 
@@ -1172,20 +1111,13 @@ function atribuirEventos() {
         mostrarEscala();
 
         montarListaEscalas(escala, operadoresDisponiveis.map(operador => operador.matricula));
-        // console.log();
-        // listaEscalas.turma = ""
-        // console.log(listaEscalas);
+
         idLista = await fetchData("POST", listaEscalas, "");
-        // console.log("idlista ", idlista);
-        // console.log("executando o get");
+
         await fetchData("GET", "", idLista);
         loading.classList.toggle('mostrar');
 
 
-
-        // salvarParametros();
-        // resetarParametros();
-        // atualizarTelaEscalas();
 
         renderizarEscala(listaEscalas.escala, listaEscalas.operadoresForaEscala);
     });
