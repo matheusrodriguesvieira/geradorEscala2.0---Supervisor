@@ -333,7 +333,7 @@ function atualizarTelaEscalas() {
 
 // FUNÇÃO RESPONSÁVEL POR CARREGAR TODOS OS EVENTOS E FUNCIONALIDADES DA APLICAÇÃO
 async function carregarAplicacao() {
-    W
+
     atualizarTituloEscalas();
 
 
